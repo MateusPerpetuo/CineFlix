@@ -58,4 +58,5 @@ public class Series extends Title{
 
         return (getEpisodeDuration() * getEpisodesPerSeason()) * getSeasons();
     }
+
 }

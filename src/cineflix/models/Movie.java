@@ -28,4 +28,5 @@ public class Movie extends Title {
     public void setDirector(String director) {
         this.director = director;
     }
+
 }

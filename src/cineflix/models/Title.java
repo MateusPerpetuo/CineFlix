@@ -62,4 +62,5 @@ public abstract class Title {
     }
 
     public abstract int getDurationInMinutes();
+
 }

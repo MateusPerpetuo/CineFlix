@@ -13,6 +13,5 @@ public class TimeCalculator {
         System.out.println("Added time duration in minutes from " + title.getName());
         this.totalTime += title.getDurationInMinutes();
     }
-
 }
 

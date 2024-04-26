@@ -25,6 +25,5 @@ public class Main {
         calculator.addTime(lost);
 
         System.out.println(calculator.getTotalTime());
-
     }
 }
