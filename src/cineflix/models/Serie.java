@@ -1,14 +1,18 @@
 package cineflix.models;
+
+import cineflix.calculations.Classifiable;
+
 /*** Class model for the tv series
  * @author Mateus Perpétuo
  * @version 1.0
  */
-public class Series extends Title{
+public class Serie extends Title implements Classifiable {
     private int seasons;
     private boolean active;
     private int episodesPerSeason;
     private int episodeDuration;
     private int totalEpisodes;
+    private int totalViews;
 
     // Getters and setters
 
@@ -53,10 +57,28 @@ public class Series extends Title{
         this.totalEpisodes = totalEpisodes;
     }
 
+    public int getTotalViews() {
+        return totalViews;
+    }
+
+    public void setTotalViews(int totalViews) {
+        this.totalViews = totalViews;
+    }
+
+    //  Methods
     @Override
     public int getDurationInMinutes() {
 
         return (getEpisodeDuration() * getEpisodesPerSeason()) * getSeasons();
     }
 
+    @Override
+    public int getClassification() {
+
+        if (totalViews > 100){
+            return 4;
+        } else  {
+            return 2;
+        }
+    }
 }

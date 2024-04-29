@@ -1,11 +1,13 @@
 package cineflix.models;
 
+import cineflix.calculations.Classifiable;
+
 /*** Class model for the movie
  * @author Mateus Perpétuo
  * @version 1.0
  */
 
-public class Movie extends Title {
+public class Movie extends Title implements Classifiable {
     private int durationInMinutes;
     private String director;
 
@@ -29,4 +31,9 @@ public class Movie extends Title {
         this.director = director;
     }
 
+    // Methods
+    @Override
+    public int getClassification() {
+        return (int) getMovieRating() / 2;
+    }
 }

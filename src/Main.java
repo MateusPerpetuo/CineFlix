@@ -1,6 +1,7 @@
+import cineflix.calculations.FilterRecommendation;
 import cineflix.calculations.TimeCalculator;
 import cineflix.models.Movie;
-import cineflix.models.Series;
+import cineflix.models.Serie;
 
 public class Main {
     public static void main(String[] args) {
@@ -12,7 +13,7 @@ public class Main {
 
         avangers.showCredits();
 
-        Series lost = new Series();
+        Serie lost = new Serie();
         lost.setName("Lost");
         lost.setYear(2000);
         lost.setSeasons(10);
@@ -25,5 +26,11 @@ public class Main {
         calculator.addTime(lost);
 
         System.out.println(calculator.getTotalTime());
+
+        FilterRecommendation filter = new FilterRecommendation();
+        filter.filter(avangers);
+
+
+
     }
 }
