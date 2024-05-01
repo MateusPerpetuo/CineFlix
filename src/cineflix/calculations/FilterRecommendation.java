@@ -10,8 +10,6 @@ public class FilterRecommendation {
             System.out.println("Well-rated at the moment");
         } else {
             System.out.println("Add it to the watch latter list");
-
         }
-
     }
 }
