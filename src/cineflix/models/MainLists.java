@@ -1,6 +1,7 @@
 package cineflix.models;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class MainLists {
     public static void main(String[] args) {
@@ -26,6 +27,12 @@ public class MainLists {
             System.out.println(item);
         }
 
+        Collections.sort(movieList);
+
+        System.out.println("list ordenada");
+        for (Title item: movieList){
+            System.out.println(item);
+        }
 
     }
 }

@@ -3,7 +3,8 @@ package cineflix.models;
  * @author Mateus Perpétuo
  * @version 1.0
  */
-public abstract class Title {
+public abstract class Title
+                implements Comparable<Title> {
     private String name;
     private int year;
     private boolean planIncluded;
@@ -21,6 +22,7 @@ public abstract class Title {
         System.out.println("Duration in minutes: " + getDurationInMinutes());
     }
 
+
     public void giveRate(double rate){
         /** Method to give rating to a movie
          *
@@ -32,6 +34,11 @@ public abstract class Title {
     public double getMovieRating(){
         double movieRating = totalRating / totalOfEvaluations;
         return movieRating;
+    }
+
+    @Override
+    public int compareTo(Title title) {
+        return this.getName().compareTo(title.getName());
     }
 
     // Constructor
