@@ -11,12 +11,11 @@ public class Movie extends Title implements Classifiable {
     private int durationInMinutes;
     private String director;
 
-    public Movie(String name) {
-        this.setName(name);
-    }
-
     // Constructor
 
+    public Movie(String name, int year) {
+        super(name, year);
+    }
 
     // Getters and Setters
     @Override
@@ -44,6 +43,6 @@ public class Movie extends Title implements Classifiable {
 
     @Override
     public String toString() {
-        return "Filme: " + this.getName() + " (" + this.getYear() + ")";
+        return "Filme: " + this.getName() + "(" + this.getYear() + ")";
     }
 }

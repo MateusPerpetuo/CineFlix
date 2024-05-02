@@ -14,6 +14,12 @@ public class Serie extends Title implements Classifiable {
     private int totalEpisodes;
     private int totalViews;
 
+    // Constructor
+
+    public Serie(String name, int year, int seasons) {
+        super(name, year);
+        this.seasons = seasons;
+    }
 
     // Getters and setters
 
@@ -75,11 +81,15 @@ public class Serie extends Title implements Classifiable {
 
     @Override
     public int getClassification() {
-
         if (totalViews > 100){
             return 4;
         } else  {
             return 2;
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Serie: " + this.getName() + "(" + this.getYear() + ")";
     }
 }
