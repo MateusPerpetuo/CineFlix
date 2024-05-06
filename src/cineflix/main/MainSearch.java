@@ -47,6 +47,7 @@ public class MainSearch {
         System.out.println("titulo: " + myMovieOmdb);
 
         Movie myMovie = new Movie(myMovieOmdb);
+        System.out.println(myMovie);
     }
 
 }

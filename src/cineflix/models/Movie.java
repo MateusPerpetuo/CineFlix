@@ -19,7 +19,7 @@ public class Movie extends Title implements Classifiable {
 
     public Movie(MovieOmdb movieOmdb) {
         super(movieOmdb.title(), Integer.valueOf(movieOmdb.year()));
-        this.durationInMinutes = Integer.valueOf(movieOmdb.runtime());
+        this.durationInMinutes = Integer.valueOf(movieOmdb.runtime().substring(0,2));
         this.director = movieOmdb.director();
     }
 
@@ -49,7 +49,9 @@ public class Movie extends Title implements Classifiable {
 
     @Override
     public String toString() {
-        return "Filme: " + this.getName() + "(" + this.getYear() + ")";
+        return "Filme: " + this.getName() + "(" + this.getYear() + ")"
+                + "\nDiretor: " + this.getDirector() + " \nDuração: " + this.getDurationInMinutes()
+                ;
     }
 
 
