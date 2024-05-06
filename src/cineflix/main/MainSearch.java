@@ -46,8 +46,16 @@ public class MainSearch {
         MovieOmdb myMovieOmdb = gson.fromJson(json, MovieOmdb.class);
         System.out.println("titulo: " + myMovieOmdb);
 
-        Movie myMovie = new Movie(myMovieOmdb);
-        System.out.println(myMovie);
+        try {
+            Movie myMovie = new Movie(myMovieOmdb);
+            System.out.println(myMovie);
+
+        } catch (NumberFormatException e){
+            System.out.println("Aconteceu um erro: " + e.getMessage());
+
+        }
+
+
     }
 
 }
