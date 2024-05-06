@@ -18,7 +18,7 @@ public class MainSearch {
         System.out.println("Digite um filme para a busca: ");
         var search = scan.nextLine();
 
-        String adress = "http://www.omdbapi.com/?t=" + search + "&apikey=d346a2b7";
+        String adress = "http://www.omdbapi.com/?t=" + search.replace(" ", "+") + "&apikey=d346a2b7";
 
         try {
             // Aqui estamos pedindo uma informação para a API
@@ -52,7 +52,10 @@ public class MainSearch {
             System.out.println("Aconteceu um erro de formatação e número: " + e.getMessage());
 
         } catch (IllegalArgumentException e) {
-            System.out.println("Aconteceu um erro de argumento na busca");
+            System.out.println("Aconteceu um erro de argumento na busca, verifique o endereço! \n"
+                    +e.getMessage());
+        } catch ( Exception e) {
+            System.out.println("Aconteceu algo, não sei o que. " + e.getMessage());
         }
     }
 

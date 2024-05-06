@@ -1,6 +1,7 @@
 package cineflix.models;
 
 import cineflix.calculations.Classifiable;
+import cineflix.exeptions.ConvertionYearErrorExeption;
 
 /*** Class model for the movie
  * @author Mateus Perpétuo
@@ -19,6 +20,12 @@ public class Movie extends Title implements Classifiable {
 
     public Movie(MovieOmdb movieOmdb) {
         super(movieOmdb.title(), Integer.valueOf(movieOmdb.year()));
+
+        // Criando a nova exeção da formatação do Ano
+        if (Integer.valueOf(movieOmdb.year().length()) > 4){
+            throw new ConvertionYearErrorExeption("Not able to convert the year: it has more than 04 characters");
+        }
+
         this.durationInMinutes = Integer.valueOf(movieOmdb.runtime().substring(0,2));
         this.director = movieOmdb.director();
     }
