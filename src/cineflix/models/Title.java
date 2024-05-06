@@ -1,10 +1,14 @@
 package cineflix.models;
+
+import com.google.gson.annotations.SerializedName;
+
 /*** Class model for the abstract super class Title
  * @author Mateus Perpétuo
  * @version 1.0
  */
 public abstract class Title
                 implements Comparable<Title> {
+
     private String name;
     private int year;
     private boolean planIncluded;
@@ -77,4 +81,9 @@ public abstract class Title
 
     public abstract int getDurationInMinutes();
 
+    @Override
+    public String toString() {
+        return "Title: " + name + '\'' +
+                "Year: " + year;
+    }
 }
