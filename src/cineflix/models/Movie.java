@@ -49,7 +49,7 @@ public class Movie extends Title implements Classifiable {
 
     @Override
     public String toString() {
-        return "Filme: " + this.getName() + "(" + this.getYear() + ")"
+        return "Filme: " + this.getName() + " (" + this.getYear() + ")"
                 + "\nDiretor: " + this.getDirector() + " \nDuração: " + this.getDurationInMinutes()
                 ;
     }
