@@ -17,6 +17,12 @@ public class Movie extends Title implements Classifiable {
         super(name, year);
     }
 
+    public Movie(MovieOmdb movieOmdb) {
+        super(movieOmdb.title(), Integer.valueOf(movieOmdb.year()));
+        this.durationInMinutes = Integer.valueOf(movieOmdb.runtime());
+        this.director = movieOmdb.director();
+    }
+
     // Getters and Setters
     @Override
     public int getDurationInMinutes() {

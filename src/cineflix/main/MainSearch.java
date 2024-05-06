@@ -43,8 +43,10 @@ public class MainSearch {
                 .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
                 .create();
 
-        MovieOmdb myTitle = gson.fromJson(json, MovieOmdb.class);
-        System.out.println("titulo: " + myTitle);
+        MovieOmdb myMovieOmdb = gson.fromJson(json, MovieOmdb.class);
+        System.out.println("titulo: " + myMovieOmdb);
+
+        Movie myMovie = new Movie(myMovieOmdb);
     }
 
 }
