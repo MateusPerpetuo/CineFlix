@@ -57,6 +57,7 @@ public class MainSearchSerie {
         } catch ( Exception e) {
             System.out.println("Aconteceu algo, não sei o que. " + e.getMessage());
         }
+
     }
 }
 
