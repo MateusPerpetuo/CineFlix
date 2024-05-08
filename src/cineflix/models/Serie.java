@@ -8,7 +8,7 @@ import cineflix.calculations.Classifiable;
  */
 public class Serie extends Title implements Classifiable {
     private int seasons;
-    private boolean active;
+    private boolean finished;
     private int episodesPerSeason;
     private int episodeDuration;
     private int totalEpisodes;
@@ -16,10 +16,21 @@ public class Serie extends Title implements Classifiable {
 
     // Constructor
 
-    public Serie(String name, int year, int seasons) {
+    public Serie(String name, String year, int seasons) {
         super(name, year);
         this.seasons = seasons;
     }
+
+
+    public Serie(SerieOmdb serieOmdb) {
+        super(serieOmdb.title(), serieOmdb.year());
+        this.episodeDuration = Integer.valueOf(serieOmdb.runtime().substring(0,2));
+        this.seasons = Integer.valueOf(serieOmdb.totalSeasons());
+        this.finished = serieOmdb.response();
+        this.episodeDuration = Integer.valueOf(serieOmdb.runtime().substring(0,2));
+
+    }
+
 
     // Getters and setters
 
@@ -31,12 +42,12 @@ public class Serie extends Title implements Classifiable {
         this.seasons = seasons;
     }
 
-    public boolean isActive() {
-        return active;
+    public boolean isFinished() {
+        return finished;
     }
 
-    public void setActive(boolean active) {
-        this.active = active;
+    public void setFinished(boolean finished) {
+        this.finished = finished;
     }
 
     public int getEpisodesPerSeason() {
@@ -90,6 +101,10 @@ public class Serie extends Title implements Classifiable {
 
     @Override
     public String toString() {
-        return "Serie: " + this.getName() + "(" + this.getYear() + ")";
+        return "Serie: " + this.getName() + " (" + this.getYear() + ")"
+                + "\nSeasons: " + this.seasons
+                + "\nFinished: " + this.finished
+                + "\nRuntime: " + this.episodeDuration
+                ;
     }
 }

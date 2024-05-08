@@ -1,37 +1,32 @@
 package cineflix.main;
-import cineflix.models.Movie;
-import cineflix.models.MovieOmdb;
+
 import cineflix.models.Serie;
+import cineflix.models.SerieOmdb;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
-import java.io.FileWriter;
-import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
-public class MainSearch {
-    public static void main(String[] args) throws IOException, InterruptedException {
-
+public class MainSearchSerie {
+    public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        System.out.println("Digite um filme para a busca: ");
+        System.out.println("Digite uma serie para a busca: ");
         var search = scan.nextLine();
 
         String adress = "http://www.omdbapi.com/?t=" + search.replace(" ", "+") + "&apikey=d346a2b7";
 
         try {
-            // Aqui estamos pedindo uma informação para a API
+            // Aqui esta pedindo uma informação para a API
             HttpClient client = HttpClient.newHttpClient();
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create(adress))
                     .build();
 
-            // Resposta da API
+            // registrando a esposta da API
             HttpResponse<String> response = client
                     .send(request, HttpResponse.BodyHandlers.ofString());
 
@@ -45,20 +40,17 @@ public class MainSearch {
                     .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
                     .create();
 
-            MovieOmdb myMovieOmdb = gson.fromJson(json, MovieOmdb.class);
-            System.out.println("titulo: " + myMovieOmdb);
+
+            SerieOmdb mySerieOmdb = gson.fromJson(json, SerieOmdb.class);
+            System.out.println("titulo: " + mySerieOmdb + " :" + mySerieOmdb.totalSeasons());
 
 
-            Movie myMovie = new Movie(myMovieOmdb);
-            System.out.println(myMovie);
-
-            FileWriter historico = new FileWriter("movies.txt");
-            historico.write(myMovie.toString());
-            historico.close();
+            Serie mySerie = new Serie(mySerieOmdb);
+            System.out.println(mySerie);
 
 
         } catch (NumberFormatException e) {
-            System.out.println("Aconteceu um erro de formatação e número: " + e.getMessage());
+            System.out.println("Aconteceu um erro de formatação de número: " + e.getMessage());
 
         } catch (IllegalArgumentException e) {
             System.out.println("Aconteceu um erro de argumento na busca, verifique o endereço! \n"
@@ -67,5 +59,5 @@ public class MainSearch {
             System.out.println("Aconteceu algo, não sei o que. " + e.getMessage());
         }
     }
-
 }
+

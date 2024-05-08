@@ -14,12 +14,12 @@ public class Movie extends Title implements Classifiable {
 
     // Constructor
 
-    public Movie(String name, int year) {
+    public Movie(String name, String year) {
         super(name, year);
     }
 
     public Movie(MovieOmdb movieOmdb) {
-        super(movieOmdb.title(), Integer.valueOf(movieOmdb.year()));
+        super(movieOmdb.title(), movieOmdb.year());
 
         // Criando a nova exeção da formatação do Ano
         if (Integer.valueOf(movieOmdb.year().length()) > 4){

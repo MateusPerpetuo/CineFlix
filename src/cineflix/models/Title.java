@@ -10,7 +10,7 @@ public abstract class Title
                 implements Comparable<Title> {
 
     private String name;
-    private int year;
+    private String year;
     private boolean planIncluded;
     private double totalRating;
     private int totalOfEvaluations;
@@ -47,7 +47,7 @@ public abstract class Title
 
     // Constructor
 
-    public Title(String name, int year) {
+    public Title(String name, String year) {
         this.name = name;
         this.year = year;
     }
@@ -63,11 +63,11 @@ public abstract class Title
         return name;
     }
 
-    public void setYear(int year) {
+    public void setYear(String year) {
         this.year = year;
     }
 
-    public int getYear() {
+    public String getYear() {
         return year;
     }
 

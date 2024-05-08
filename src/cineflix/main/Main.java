@@ -11,12 +11,12 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
 
-        Movie avangers = new Movie("Avenger", 2023);
+        Movie avangers = new Movie("Avenger", "2023");
         avangers.setDurationInMinutes(120);
 
         avangers.showCredits();
 
-        Serie lost = new Serie("Lost", 2000,10);
+        Serie lost = new Serie("Lost", "2000",10);
         lost.setEpisodeDuration(50);
         lost.setEpisodesPerSeason(10);
         System.out.println("Para maratonar Lost: " + lost.getDurationInMinutes());
@@ -36,7 +36,7 @@ public class Main {
         episode.setTotalViews(300);
         filter.filter(episode);
 
-        var up = new Movie("UP!",2009);
+        var up = new Movie("UP!","2009");
         up.setDurationInMinutes(95);
 
         ArrayList<Movie> movieList = new ArrayList<>();
