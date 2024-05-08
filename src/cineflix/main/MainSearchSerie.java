@@ -44,7 +44,6 @@ public class MainSearchSerie {
             SerieOmdb mySerieOmdb = gson.fromJson(json, SerieOmdb.class);
             System.out.println("titulo: " + mySerieOmdb + " :" + mySerieOmdb.totalSeasons());
 
-
             Serie mySerie = new Serie(mySerieOmdb);
             System.out.println(mySerie);
 
