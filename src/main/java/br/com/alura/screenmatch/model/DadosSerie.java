@@ -1,5 +1,6 @@
 package br.com.alura.screenmatch.model;
 
+import br.com.alura.screenmatch.service.ConsultaMyMemory;
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -19,7 +20,7 @@ public record DadosSerie(@JsonAlias("Title") String titulo,
                 + ", Nota IMDB: " + avaliacao
                 + "\nGênero: " + genero
                 + "\nAtores: " + atores
-                + "\nSinopse: " + sinopse
+                + "\nSinopse: " + ConsultaMyMemory.obterTraducao(sinopse.trim())
                 + "\nPôster: " + poster
                 ;
     }
