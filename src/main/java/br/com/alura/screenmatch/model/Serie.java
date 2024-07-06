@@ -1,13 +1,22 @@
 package br.com.alura.screenmatch.model;
 
 import br.com.alura.screenmatch.service.ConsultaMyMemory;
+import jakarta.persistence.*;
 
 import java.util.OptionalDouble;
-
+@Entity
+@Table(name = "series")
 public class Serie {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    @Column(unique = true)
     private String titulo;
     private Integer totalTemporadas;
     private Double avaliacao;
+
+    @Enumerated(EnumType.STRING)
     private Categoria genero;
     private String sinopse;
     private String atores;
@@ -36,6 +45,16 @@ public class Serie {
     }
 
     // Getters and setters
+
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public String getTitulo() {
         return titulo;
     }
