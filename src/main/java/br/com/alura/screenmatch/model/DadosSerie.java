@@ -17,7 +17,7 @@ public record DadosSerie(@JsonAlias("Title") String titulo,
         return  "\nTitulo: '" + titulo
                 + "', Temporadas: " + totalTemporadas
                 + ", Nota IMDB: " + avaliacao
-                + "\nGênero : " + genero
+                + "\nGênero: " + genero
                 + "\nAtores: " + atores
                 + "\nSinopse: " + sinopse
                 + "\nPôster: " + poster

@@ -3,14 +3,12 @@ package br.com.alura.screenmatch.principal;
 import br.com.alura.screenmatch.model.DadosSerie;
 import br.com.alura.screenmatch.model.DadosTemporada;
 import br.com.alura.screenmatch.model.Episodio;
+import br.com.alura.screenmatch.model.Serie;
 import br.com.alura.screenmatch.service.ConsumoApi;
 import br.com.alura.screenmatch.service.ConverteDados;
 
-import java.util.ArrayList;
-import java.util.DoubleSummaryStatistics;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class Principal {
@@ -31,8 +29,7 @@ public class Principal {
                     \n1 - Buscar Séries
                     2 - Buscar Episódios
                     3 - Listar Séries buscadas
-                                    
-                    0 - Sair                                 
+                    \n0 - Sair
                     """;
 
             System.out.println(menu);
@@ -85,6 +82,14 @@ public class Principal {
     }
 
     private void listarSeriesBuscadas(){
-        dadosSeries.forEach(System.out::println);
+        List<Serie> series = new ArrayList<>();
+        // Criando lista de objetos da classe Series apartir do record "DadosSeries"
+        series = dadosSeries.stream()
+                        .map(d -> new Serie(d))
+                                .toList();
+        // Organizando a lista levando em conta as categorias e exibindo a lista organizada
+        series.stream()
+                .sorted(Comparator.comparing(Serie::getGenero))
+                .forEach(System.out::println);
     }
 }
