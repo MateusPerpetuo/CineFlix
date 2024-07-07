@@ -12,18 +12,16 @@ public class Serie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
     @Column(unique = true)
     private String titulo;
     private Integer totalTemporadas;
     private Double avaliacao;
-
     @Enumerated(EnumType.STRING)
     private Categoria genero;
     private String sinopse;
     private String atores;
     private String poster;
-    @Transient
+    @OneToMany(mappedBy = "serie")
     private List<Episodio> episodios = new ArrayList<>();
 
     public Serie(){}
