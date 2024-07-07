@@ -26,13 +26,15 @@ public class Serie {
     @Transient
     private List<Episodio> episodios = new ArrayList<>();
 
+    public Serie(){}
+
     public Serie( DadosSerie dadosSerie) {
         this.titulo = dadosSerie.titulo();
         this.totalTemporadas = dadosSerie.totalTemporadas();
         this.atores = dadosSerie.atores();
         this.poster = dadosSerie.poster();
         this.genero = Categoria.fromString(dadosSerie.genero().split(",")[0].trim());
-        this.avaliacao = OptionalDouble.of(Double.valueOf(dadosSerie.avaliacao()))
+        this.avaliacao = OptionalDouble.of(Double.parseDouble(dadosSerie.avaliacao()))
                 .orElse(0.0);
         this.sinopse = ConsultaMyMemory.obterTraducao(dadosSerie.sinopse().trim());
     }
