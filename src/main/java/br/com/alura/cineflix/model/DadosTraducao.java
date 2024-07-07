@@ -1,4 +1,4 @@
-package br.com.alura.screenmatch.model;
+package br.com.alura.cineflix.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

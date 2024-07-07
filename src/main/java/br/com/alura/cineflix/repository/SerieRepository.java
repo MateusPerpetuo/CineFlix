@@ -1,6 +1,6 @@
-package br.com.alura.screenmatch.repository;
+package br.com.alura.cineflix.repository;
 
-import br.com.alura.screenmatch.model.Serie;
+import br.com.alura.cineflix.model.Serie;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface SerieRepository extends JpaRepository<Serie, Long> {

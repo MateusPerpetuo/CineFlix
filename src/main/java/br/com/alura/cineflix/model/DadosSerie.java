@@ -1,6 +1,6 @@
-package br.com.alura.screenmatch.model;
+package br.com.alura.cineflix.model;
 
-import br.com.alura.screenmatch.service.ConsultaMyMemory;
+import br.com.alura.cineflix.service.ConsultaMyMemory;
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

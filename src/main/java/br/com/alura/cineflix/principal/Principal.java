@@ -1,11 +1,11 @@
-package br.com.alura.screenmatch.principal;
+package br.com.alura.cineflix.principal;
 
-import br.com.alura.screenmatch.model.DadosSerie;
-import br.com.alura.screenmatch.model.DadosTemporada;
-import br.com.alura.screenmatch.model.Serie;
-import br.com.alura.screenmatch.repository.SerieRepository;
-import br.com.alura.screenmatch.service.ConsumoApi;
-import br.com.alura.screenmatch.service.ConverteDados;
+import br.com.alura.cineflix.model.DadosSerie;
+import br.com.alura.cineflix.model.DadosTemporada;
+import br.com.alura.cineflix.model.Serie;
+import br.com.alura.cineflix.repository.SerieRepository;
+import br.com.alura.cineflix.service.ConsumoApi;
+import br.com.alura.cineflix.service.ConverteDados;
 import java.util.*;
 
 public class Principal {
@@ -14,7 +14,7 @@ public class Principal {
     private ConsumoApi consumo = new ConsumoApi();
     private ConverteDados conversor = new ConverteDados();
     private final String ENDERECO = "https://www.omdbapi.com/?t=";
-    private final String API_KEY = "&apikey=d346a2b7";
+    private final String API_KEY = System.getenv("OMDB_API_KEY");
     private List<DadosSerie> dadosSeries = new ArrayList<>();
     private SerieRepository serieRepository;
 
