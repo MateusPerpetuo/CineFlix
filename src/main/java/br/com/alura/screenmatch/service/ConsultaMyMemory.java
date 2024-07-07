@@ -13,7 +13,7 @@ public class ConsultaMyMemory {
         ConsumoApi consumo = new ConsumoApi();
 
         String texto = URLEncoder.encode(text);
-        String langpair = URLEncoder.encode("en|pt-br");
+        String langpair = URLEncoder.encode("Autodetect|pt-br");
 
         String url = "https://api.mymemory.translated.net/get?q=" + texto + "&langpair=" + langpair;
 
