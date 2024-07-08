@@ -17,7 +17,7 @@ public class Principal {
     private List<DadosSerie> dadosSeries = new ArrayList<>();
     private SerieRepository serieRepository;
     private  List<Serie> seriesList = new ArrayList<>();
-    private Optional<Serie> serieBuscada;
+    private Optional<Serie> serieBusca;
 
     public Principal(SerieRepository serieRepository) {
         this.serieRepository = serieRepository;
@@ -39,6 +39,7 @@ public class Principal {
                     8 - Filtar Séries
                     9 - Buscar Episódio por nome
                     10 - Top 5 Episódios por Série
+                    11 - Buscar Episódios a partir de uma data
                     \n0 - Sair
                     """;
 
@@ -76,6 +77,9 @@ public class Principal {
                     break;
                 case 10:
                     buscarTopEpisodios();
+                    break;
+                case 11:
+                    buscarEpisodiosDepoisDeUmaData();
                     break;
                 case 0:
                     System.out.println("Saindo...");
@@ -148,10 +152,10 @@ public class Principal {
     private void buscarSeriePorTitulo() {
         System.out.println("\nDigite o nome da série que deseja buscar: ");
         var nomeSerie = leitura.nextLine();
-        serieBuscada = serieRepository.findByTituloContainingIgnoreCase(nomeSerie);
+        serieBusca = serieRepository.findByTituloContainingIgnoreCase(nomeSerie);
 
-        if (serieBuscada.isPresent()){
-            System.out.println("Dados da Série: " + serieBuscada.get());
+        if (serieBusca.isPresent()){
+            System.out.println("Dados da Série: " + serieBusca.get());
         } else {
             System.out.println("Série não encontrada4");
         }
@@ -230,14 +234,32 @@ public class Principal {
     private void buscarTopEpisodios(){
         buscarSeriePorTitulo();
 
-        if(serieBuscada.isPresent()){
-            Serie serie = serieBuscada.get();
+        if(serieBusca.isPresent()){
+            Serie serie = serieBusca.get();
             List<Episodio> topEpisodios = serieRepository.topEpPorSerie(serie);
 
             topEpisodios.forEach(e -> System.out.printf(
                     "\nSérie: '%s'  |  Temporada: %s - EP %s  | Nota: %s"
                             + "\nEpisódio: %s\n" ,e.getSerie().getTitulo() , e.getTemporada(),
                     e.getNumeroEpisodio(),e.getAvaliacao(), e.getTitulo()
+            ));
+        }
+    }
+
+    private void buscarEpisodiosDepoisDeUmaData(){
+        buscarSeriePorTitulo();
+
+        if(serieBusca.isPresent()){
+            System.out.println("\nDigite a partir de que ano deseja que a pesquisa seja feita:");
+            var anoLancamento = leitura.nextInt();
+
+            Serie serie = serieBusca.get();
+            List<Episodio> episodiosAno = serieRepository.episodiosPorSerieEAno(serie, anoLancamento);
+
+            episodiosAno.forEach(e -> System.out.printf(
+                    "\nSérie: '%s'  |  Temporada: %s - EP %s  | Nota: %s"
+                            + "\nEpisódio: %s  |  Data: %s\n" ,e.getSerie().getTitulo() , e.getTemporada(),
+                    e.getNumeroEpisodio(),e.getAvaliacao(), e.getTitulo(), e.getDataLancamento()
             ));
         }
     }
