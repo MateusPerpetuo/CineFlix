@@ -17,6 +17,7 @@ public class Principal {
     private List<DadosSerie> dadosSeries = new ArrayList<>();
     private SerieRepository serieRepository;
     private  List<Serie> seriesList = new ArrayList<>();
+    private Optional<Serie> serieBuscada;
 
     public Principal(SerieRepository serieRepository) {
         this.serieRepository = serieRepository;
@@ -37,6 +38,7 @@ public class Principal {
                     7 - Buscar Série por Gênero
                     8 - Filtar Séries
                     9 - Buscar Episódio por nome
+                    10 - Top 5 Episódios por Série
                     \n0 - Sair
                     """;
 
@@ -71,6 +73,9 @@ public class Principal {
                     break;
                 case 9:
                     buscarEpisodioPorNome();
+                    break;
+                case 10:
+                    buscarTopEpisodios();
                     break;
                 case 0:
                     System.out.println("Saindo...");
@@ -143,7 +148,7 @@ public class Principal {
     private void buscarSeriePorTitulo() {
         System.out.println("\nDigite o nome da série que deseja buscar: ");
         var nomeSerie = leitura.nextLine();
-        Optional<Serie> serieBuscada = serieRepository.findByTituloContainingIgnoreCase(nomeSerie);
+        serieBuscada = serieRepository.findByTituloContainingIgnoreCase(nomeSerie);
 
         if (serieBuscada.isPresent()){
             System.out.println("Dados da Série: " + serieBuscada.get());
@@ -220,5 +225,20 @@ public class Principal {
                 e.getNumeroEpisodio(), e.getTitulo()
         ));
 
+    }
+
+    private void buscarTopEpisodios(){
+        buscarSeriePorTitulo();
+
+        if(serieBuscada.isPresent()){
+            Serie serie = serieBuscada.get();
+            List<Episodio> topEpisodios = serieRepository.topEpPorSerie(serie);
+
+            topEpisodios.forEach(e -> System.out.printf(
+                    "\nSérie: '%s'  |  Temporada: %s - EP %s  | Nota: %s"
+                            + "\nEpisódio: %s\n" ,e.getSerie().getTitulo() , e.getTemporada(),
+                    e.getNumeroEpisodio(),e.getAvaliacao(), e.getTitulo()
+            ));
+        }
     }
 }
