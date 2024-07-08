@@ -35,6 +35,7 @@ public class Principal {
                     5 - Buscar Série por Ator
                     6 - Buscar Top5 Séries
                     7 - Buscar Série por Gênero
+                    8 - Filtar Séries
                     \n0 - Sair
                     """;
 
@@ -64,6 +65,8 @@ public class Principal {
                 case 7:
                     buscarPorGenero();
                     break;
+                case 8:
+                    buscarSeriePorNumeroMaximoDeTemporada();
                 case 0:
                     System.out.println("Saindo...");
                     break;
@@ -179,5 +182,22 @@ public class Principal {
                 .forEach(s ->
                 System.out.println("Série: " + s.getTitulo() + "  |  Nota: " + s.getAvaliacao()));
 
+    }
+
+    private void buscarSeriePorNumeroMaximoDeTemporada() {
+        System.out.println("Qual o número maximo de temporadas?");
+        var numeroTemporadas = leitura.nextInt();
+
+        System.out.println("Qual a nota minima? ");
+        var numeroAvaliacao = leitura.nextDouble();
+
+        List<Serie> seriesBuscadas = serieRepository.seriesPorTemporadaEAvaliação(numeroTemporadas,numeroAvaliacao);
+
+        System.out.println("Séries filtrada que tenham até " + numeroTemporadas
+                + " temporadas e pelo menos nota " + numeroAvaliacao + ": ");
+
+        seriesBuscadas.forEach(s -> System.out.println("Série: " + s.getTitulo()
+                + "  |  Nota: " + s.getAvaliacao()
+                + "  |  Temporadas: " + s.getTotalTemporadas()));
     }
 }
