@@ -1,9 +1,6 @@
 package br.com.alura.cineflix.principal;
 
-import br.com.alura.cineflix.model.DadosSerie;
-import br.com.alura.cineflix.model.DadosTemporada;
-import br.com.alura.cineflix.model.Episodio;
-import br.com.alura.cineflix.model.Serie;
+import br.com.alura.cineflix.model.*;
 import br.com.alura.cineflix.repository.SerieRepository;
 import br.com.alura.cineflix.service.ConsumoApi;
 import br.com.alura.cineflix.service.ConverteDados;
@@ -31,12 +28,13 @@ public class Principal {
 
         while (opcao !=0) {
             var menu = """
-                    \n1 - Buscar Séries
+                    \n1 - Buscar para adicionar no Banco de Dados
                     2 - Buscar Episódios
                     3 - Listar Séries buscadas
                     4 - Buscar Série por Nome
                     5 - Buscar Série por Ator
                     6 - Buscar Top5 Séries
+                    7 - Buscar Série por Gênero
                     \n0 - Sair
                     """;
 
@@ -62,6 +60,9 @@ public class Principal {
                     break;
                 case 6:
                     buscarTopSeries();
+                    break;
+                case 7:
+                    buscarPorGenero();
                     break;
                 case 0:
                     System.out.println("Saindo...");
@@ -163,5 +164,20 @@ public class Principal {
 
         topSeries.forEach(s -> System.out.println(
                         "Série: " + s.getTitulo() + " | Nota: " + s.getAvaliacao()));
+    }
+
+    private void buscarPorGenero(){
+        System.out.println("Deseja buscar séries de qual gênero?");
+        var genero = leitura.nextLine();
+        Categoria categoria = Categoria.fromPortugues(genero);
+
+        List<Serie> seriesCategoria = serieRepository.findByGenero(categoria);
+
+        System.out.println("\nSéries de " + genero);
+        seriesCategoria.stream()
+                .sorted(Comparator.comparing(serie -> serie.getTitulo()))
+                .forEach(s ->
+                System.out.println("Série: " + s.getTitulo() + "  |  Nota: " + s.getAvaliacao()));
+
     }
 }

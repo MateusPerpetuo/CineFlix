@@ -2,21 +2,32 @@ package br.com.alura.cineflix.model;
 
 public enum Categoria {
 
-    ACAO("Action"),
-    ROMANCE("Romance"),
-    COMEDIA("Comedy"),
-    DRAMA("Drama"),
-    CRIME("Crime");
+    ACAO("Action" , "Ação"),
+    ROMANCE("Romance" , "Romance"),
+    COMEDIA("Comedy" , "Comédia"),
+    DRAMA("Drama" , "Drama"),
+    CRIME("Crime", "Crime");
 
-    private String categoriaOmdb;
+    private String generoOmdb;
+    private String generoPortugues;
 
-    Categoria(String categoriaOmdb){
-        this.categoriaOmdb = categoriaOmdb;
+    Categoria(String generoOmdb, String generoPortugues){
+        this.generoOmdb = generoOmdb;
+        this.generoPortugues = generoPortugues;
     }
 
     public static Categoria fromString(String text) {
         for (Categoria categoria : Categoria.values()) {
-            if (categoria.categoriaOmdb.equalsIgnoreCase(text)) {
+            if (categoria.generoOmdb.equalsIgnoreCase(text)) {
+                return categoria;
+            }
+        }
+        throw new IllegalArgumentException("Nenhuma categoria encontrada para a string fornecida: " + text);
+    }
+    public static Categoria fromPortugues(String text) {
+
+        for (Categoria categoria : Categoria.values()) {
+            if (categoria.generoPortugues.equalsIgnoreCase(text)) {
                 return categoria;
             }
         }
