@@ -53,5 +53,9 @@ public class SerieController {
     public List<SerieDTO> obterSeriesPorGenero(@PathVariable String genero){
         return serieService.filtrarSeriesPorGenero(genero);
     }
+    @GetMapping("/{id}/temporadas/top")
+    public List<EpisodioDTO> obterTop5Episodios (@PathVariable Long id){
+        return  serieService.obterTop5Episodios(id);
+    }
 
 }
