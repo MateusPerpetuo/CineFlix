@@ -2,6 +2,7 @@ package br.com.alura.cineflix.service;
 
 import br.com.alura.cineflix.dto.EpisodioDTO;
 import br.com.alura.cineflix.dto.SerieDTO;
+import br.com.alura.cineflix.model.Categoria;
 import br.com.alura.cineflix.model.Serie;
 import br.com.alura.cineflix.repository.SerieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,6 +62,18 @@ public class SerieService {
                     .collect(Collectors.toList());
         }
         return null;
+    }
+
+    public List<EpisodioDTO> obterTemporadasPorNumero(Long id, Long numero) {
+        return serieRepository.obterEpisodiosPorTemporada(id, numero)
+                .stream()
+                .map(e -> new EpisodioDTO(e.getTemporada(), e.getNumeroEpisodio(), e.getTitulo()))
+                .collect(Collectors.toList());
+    }
+
+    public List<SerieDTO> filtrarSeriesPorGenero(String genero) {
+        Categoria categoria = Categoria.fromPortugues(genero);
+        return convertDados(serieRepository.findByGenero(categoria));
     }
 }
 
