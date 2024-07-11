@@ -6,13 +6,11 @@ Este projeto é resultado do curso "Java: criando sua primeira API e conectando 
 
 ## 📜 Processos Realizados
 
-O projeto envolveu a integração com a API OMDb para buscar dados de séries e a API MyMemory para traduzir as sinopses para o português, já que a OMDb retorna as informações no idioma original.
+Inicialmente, criei a aplicação Cineflix em Java usando Spring Boot. Em seguida, implementei a integração com a API OMDb para buscar dados de séries, armazenando essas informações em um banco de dados relacional. Devido ao fato da API OMDb retornar as sinopses no idioma de origem das séries, utilizei a API MyMemory para traduzir essas sinopses para o português, garantindo uma melhor experiência ao usuário final.
 
-Comecei criando a aplicação em Spring Boot e depois integrei com a API OMDb para puxar os dados das séries e salvá-los em um banco de dados. Para traduzir as sinopses, usei a API MyMemory, que facilitou trazer as descrições em português.
+Para transformar a aplicação em uma API REST, adicionei a dependência Web ao projeto e configurei o TomCat como servidor local para gerenciar requisições. Criei a classe Controller para receber e processar as requisições, utilizando anotações como @RestController, @RequestMapping e @GetMapping para mapear rotas e endpoints. Também implementei uma classe de serviço anotada com @Service para fornecer dados ao controlador, separando as responsabilidades e promovendo uma arquitetura mais limpa e modular.
 
-Transformei a aplicação em uma API REST, configurando o TomCat para gerenciar as requisições e criei a classe Controller para lidar com as rotas e endpoints. Usei anotações como @RestController e @GetMapping para facilitar o mapeamento das rotas e implementei uma classe de serviço para fornecer os dados ao controlador.
-
-Por fim, habilitei as conexões com o front-end que foi disponibilizado pela Alura, permitindo que a aplicação exibisse as informações salvas no banco de dados diretamente no navegador. A aplicação agora mostra as séries, permite filtrar por categorias e exibe páginas de detalhes com todas as informações relevantes.
+Por fim, habilitei as conexões com o front-end fornecido pela Alura, permitindo que a aplicação retornasse as informações armazenadas no banco de dados para serem exibidas no navegador. Finalizei a implementação de todas as rotas necessárias, permitindo a visualização das séries, a filtragem por categorias e o acesso a uma página de detalhes com informações completas sobre temporadas e episódios.
 
 ## ✨ Funcionalidades
 
@@ -32,11 +30,21 @@ Por fim, habilitei as conexões com o front-end que foi disponibilizado pela Alu
 - ![Google API](https://img.shields.io/badge/Google%20API-%234285F4.svg?style=for-the-badge&logo=google&logoColor=white)
 - ![Maven](https://img.shields.io/badge/Maven-%23C71A36.svg?style=for-the-badge&logo=apache-maven&logoColor=white)
 
-## Estrutura do Projeto
+## Imagens
 
-O projeto segue uma arquitetura de camadas, com as seguintes principais classes:
+### O front exibindo os dados da API Rest
 
-    SerieController: Responsável por expor os endpoints da API
-    SerieService: Implementa a lógica de negócio relacionada às séries
-    SerieRepository: Acessa o banco de dados para obter as informações das séries
-    SerieDTO: Representa os dados de uma série de TV.
+![image](https://github.com/MateusPerpetuo/Cineflix-API-REST-de-Series/assets/129229556/d2d5ae74-0fb3-44f2-8fbf-d87ef350a65c)
+
+![image](https://github.com/MateusPerpetuo/Cineflix-API-REST-de-Series/assets/129229556/682ecf46-f00a-4a9d-bc29-580e023c0201)
+
+![image](https://github.com/MateusPerpetuo/Cineflix-API-REST-de-Series/assets/129229556/5709d8fe-5cf5-4e9c-afe4-4da986152b83)
+
+### O banco de dados
+
+![image](https://github.com/MateusPerpetuo/Cineflix-API-REST-de-Series/assets/129229556/fccac65f-dec1-4ea8-9777-4aa6ded5cd92)
+
+![image](https://github.com/MateusPerpetuo/Cineflix-API-REST-de-Series/assets/129229556/2cba0c0a-80fa-49e4-87e9-628b7a53fc1c)
+
+
+
